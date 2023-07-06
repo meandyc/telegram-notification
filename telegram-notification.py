@@ -6,7 +6,7 @@ from pprint import pprint
 import datetime, time
 import sys
 
-class TelegramBot:
+class TelegramNotification:
     def __init__(self):
         self.API_URL = 'https://api.telegram.org/bot'
         with open('/home/andy/.telegram-bot/.telegram-api-token', 'r') as f:
@@ -14,7 +14,7 @@ class TelegramBot:
     
     def send_message(self, chat_id='969768646', torrent_name='Torrent name'):
         """
-        Use this method to send text messages. On success, the sent Message is returned.
+        Send me a telegram message when the Torrent file has been downloaded.
         """
         url = self.API_URL + self.API_ID + '/sendMessage'
         current_time = datetime.datetime.fromtimestamp(time.time())
@@ -28,14 +28,6 @@ class TelegramBot:
             print(f'Failed sending the message.')
 
 if __name__ == '__main__':
-    # meandyc 969768646
-    # TestGroup -991250963
-    # Nilo -1001258742986 
-    # Pablo 627140333
-
-    # bot = TelegramBot()
-    # bot.send_message(msg='Name')
-
     if len(sys.argv) > 1:
-        bot = TelegramBot()
+        bot = TelegramNotification()
         bot.send_message(torrent_name=' '.join(sys.argv[1:]))
